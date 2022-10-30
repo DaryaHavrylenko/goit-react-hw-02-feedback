@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from "./Statistics/Statistics";
 
 
@@ -9,12 +11,13 @@ state = {
   neutral: 0,
   bad: 0
 }
-  countFeedback = (event) => {
+  countFeedback = (options) => {
  
-    this.setState(prevState => {
+  this.setState((prevState) => {
+   
       return {
         ...this.state,
-      [event.target.name]: prevState[event.target.name] + 1,
+      [options]: prevState[options] + 1,
        }
    })
   }
@@ -39,13 +42,10 @@ state = {
 }
 
  render() {
-   return (<div>
-     <div> Please leave feedback</div>
-    <div>
-       <button type="button" name="good" onClick={this.countFeedback}>Good</button>
-       <button type="button" name="neutral" onClick={this.countFeedback}>Neutral</button>
-       <button type="button" name="bad" onClick={this.countFeedback}>Bad</button>
-     </div>
+   return (
+     <div>
+       <FeedbackOptions options={Object.keys(this.state)} onLeaveFeedback={this.countFeedback}></FeedbackOptions>
+    
  <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage() || 0? this.countPositiveFeedbackPercentage() : 0} />
    </div>
   
@@ -53,4 +53,4 @@ state = {
    
   }
 };
-export default App
+export default App;
