@@ -43,11 +43,12 @@ state = {
 
  render() {
    return (
-     <div>
+     <>
+       
        <FeedbackOptions options={Object.keys(this.state)} onLeaveFeedback={this.countFeedback}></FeedbackOptions>
     
  <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage() || 0? this.countPositiveFeedbackPercentage() : 0} />
-   </div>
+   </>
   
    )
    
